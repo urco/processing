@@ -1,30 +1,42 @@
 Catcher catcher;
 //Ball ball;
-Ball[] balls=new Ball[3];//se declara un vector que almacenara objetos de tipo Ball
+//Ball[] balls=new Ball[3];//se declara un vector que almacenara objetos de tipo Ball
 //ball=new Ball(20);
+Drop[] drops=new Drop[1000];
+Tiempo timer;
+
+int totalDrops=0;
 
 void setup(){
-  size(200,200);
+  size(400,400);
   smooth();
-  for(int i=0;i<balls.length-1;i++){
-    balls[i]=new Ball(random(10,50)); //se inicializa el vector con 3 objetos de tipo Ball
-  }
+  background(0);
+  timer=new Timer(5000);
+  timer.start();
 }
 
+
 void draw(){
-  background(255);
+ if (timer.isFinished()){ //comprueba si han transcurrido los 5 milisegundos
+    background(random(255));
+    timer.start(); //establece una nueva marca temporal para recalcular de nuevo el tiempo transcurrido
+  }
+  //inicializa(crea) una gota en la primera posición del array
+  drops[totalDrops]=new Drop();
+  totalDrops++;
+  //si nosotros llegamos al final del array
+  if (totalDrops>=drops.length){
+    totalDrops = 0;   
+ }
+ //mueve y dibuja las gotas
+ for (int i=0;i<totalDrops;i++) {
+   drops[i].move();
+   drops[i].display();
+ }  
   stroke(0);
   fill(175);
   ellipse(mouseX,mouseY,64,64);
-  for(int i=0;i<balls.length-1;i++){
-  balls[i].move();
-  if (balls[i].intersect(balls[i+1])){
-  balls[i].highlight();
-   }
-  balls[i].display();  
  }
-
-}
 
 
 class Catcher{
@@ -49,3 +61,5 @@ void display(){
   }
 
 }
+
+

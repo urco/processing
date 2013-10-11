@@ -28,7 +28,7 @@ yspeed *= -1;
   }
 }
 void highlight(){
-  c=color(0,150);
+c=color(255, 204, 0);
 }
 
 //draw the ball
@@ -40,6 +40,7 @@ void display(){
  }
 
 boolean intersect(Ball b){
+  b=new Ball(100);
   float distance=dist(x,y,b.x,b.y);
   if (distance < r + b.r){
   return true;
