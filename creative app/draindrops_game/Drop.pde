@@ -1,13 +1,15 @@
 class Drop {
+
   float x,y;
   float speed;
   color c;
   float r;
 
 Drop(){
+  
   r=8; //todas las gotas tienen el mismo tamaño
   x=random(width);//empieza con una localizacion en el eje X aleatoria
-  y-=r*4;//empieza una pequeña gota en el top de la ventana
+  y=-r*4;//empieza una pequeña gota en el top de la ventana
   speed=random(1,5);//adquiere una velocidad aleatoria
   c=color(50,100,150);//color
 }
@@ -20,8 +22,7 @@ void move(){
 //Comprueba si las gotas llegan al suelo
 
 boolean reachedBottom(){
-  //comprobamos si la gota abandona la ventana.
-  if (y>height+r*4){
+ if (y>height+r*4){
     return true;
   }else{
     return false;
@@ -29,9 +30,16 @@ boolean reachedBottom(){
 }
 //dibujamos la gota
 void display(){
- fill(50,100,150);
+ fill(c);
  noStroke();
- for(int i=2;1 < r;i++){
+ for(int i=2;i < r;i++){
  ellipse(x,y+i*4,i*2,i*2); 
  }
 }
+
+void caught(){
+  speed=0;
+  y=-1000;
+ }
+ }
+
