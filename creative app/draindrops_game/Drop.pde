@@ -41,5 +41,5 @@ void caught(){
   speed=0;
   y=-1000;
  }
- }
+}
 
