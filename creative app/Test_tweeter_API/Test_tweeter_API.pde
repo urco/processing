@@ -4,6 +4,8 @@ import twitter4j.auth.*;
 import twitter4j.api.*;
 import java.util.*;
 
+Twitter twitter;
+
 void setup()
 {
     size(800,600);
