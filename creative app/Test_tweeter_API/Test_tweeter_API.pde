@@ -5,7 +5,7 @@ import twitter4j.api.*;
 import java.util.*;
 
 Twitter twitter;
-String searchString = "LOMCE";
+String searchString = " just landed";
 List<Status> tweets;
 
 int currentTweet;
@@ -86,7 +86,7 @@ void tweet()
 {
     try 
     {
-        Status status = twitter.updateStatus("This is a tweet sent from Processing!");
+        Status status = twitter.updateStatus("This iis a tweet sent from Processing!");
         System.out.println("Status updated to [" + status.getText() + "].");
     }
     catch (TwitterException te)
