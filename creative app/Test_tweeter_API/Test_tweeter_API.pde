@@ -14,22 +14,13 @@ void setup()
 {
 
   size(800, 600);
-  ConfigurationBuilder cb=new ConfigurationBuilder();
-  cb.setOAuthConsumerKey("uMjvPLmvcs7j4flrgqsSw");
-  cb.setOAuthConsumerSecret("MhRJLl1I1gJeftRDEHS5ZvDtrRF1VYVpJNjE7SYDdj4");
-  cb.setOAuthAccessToken("2151648294-wftVMnuuBp1cKMINr9VCxCchtHb3zGMx37nGZLV");
-  cb.setOAuthAccessTokenSecret("OHI4xguKlyTKoemMMQsycLWUcmxhZYtxLl751biXJtu6K");
-
-  TwitterFactory tf = new TwitterFactory(cb.build());
-
-  twitter =tf.getInstance();
-
+  TweetConnection();
   getNewTweets();
-
   currentTweet = 0;
-
   thread("refreshTweets");
+  
 }
+
 
 void draw()
 {
@@ -52,6 +43,7 @@ void draw()
   delay(250);
 }
 
+
 void getNewTweets()
 {
   try 
@@ -69,6 +61,7 @@ void getNewTweets()
   }
 }
 
+
 void refreshTweets()
 {
   while (true)
@@ -77,7 +70,7 @@ void refreshTweets()
 
     println("Updated Tweets"); 
 
-    delay(30000);
+    delay(5000);
   }
 }
 
@@ -86,7 +79,7 @@ void tweet()
 {
     try 
     {
-        Status status = twitter.updateStatus("This is a tweet sent from Processing!");
+        Status status = twitter.updateStatus("prbando arte xenerativo nas redes sociais...");
         System.out.println("Status updated to [" + status.getText() + "].");
     }
     catch (TwitterException te)
@@ -95,7 +88,25 @@ void tweet()
     }
 }
 
+
+
 void keyPressed()
 {
     tweet();
+}
+
+
+void TweetConnection(){
+  
+ConfigurationBuilder cb=new ConfigurationBuilder();
+  cb.setOAuthConsumerKey("uMjvPLmvcs7j4flrgqsSw");
+  cb.setOAuthConsumerSecret("MhRJLl1I1gJeftRDEHS5ZvDtrRF1VYVpJNjE7SYDdj4");
+  cb.setOAuthAccessToken("2151648294-wftVMnuuBp1cKMINr9VCxCchtHb3zGMx37nGZLV");
+  cb.setOAuthAccessTokenSecret("OHI4xguKlyTKoemMMQsycLWUcmxhZYtxLl751biXJtu6K");
+
+  TwitterFactory tf = new TwitterFactory(cb.build());
+
+  twitter =tf.getInstance();
+
+
 }
