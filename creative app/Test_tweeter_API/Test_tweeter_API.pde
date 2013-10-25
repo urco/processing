@@ -5,7 +5,7 @@ import twitter4j.api.*;
 import java.util.*;
 
 Twitter twitter;
-String searchString = "LOMCE";
+String searchString = " just landed";
 List<Status> tweets;
 
 int currentTweet;
@@ -79,7 +79,11 @@ void tweet()
 {
     try 
     {
+<<<<<<< HEAD
         Status status = twitter.updateStatus("prbando arte xenerativo nas redes sociais...");
+=======
+        Status status = twitter.updateStatus("This iis a tweet sent from Processing!");
+>>>>>>> 5cd0cf57fc802e4f580c679d0d7731882bc816db
         System.out.println("Status updated to [" + status.getText() + "].");
     }
     catch (TwitterException te)

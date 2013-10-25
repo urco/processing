@@ -58,7 +58,7 @@ void getTimeline() {
     text(status.getUser().getName() + ": " + status.getText(), random(width), random(height), 300, 200);
   }
 }  
-// Search for tweets
+// Search for tweets and user profile Image
 
 void getSearchTweets() {           
   try {        
@@ -72,7 +72,7 @@ void getSearchTweets() {
       imgTemp=status.getUser().getBiggerProfileImageURL();
       img = loadImage(imgTemp, "png"); 
       //img.resize(600,0);
-      image(img,0,0);   
+      image(img,random(width), random(height));   
    }
   }   
   catch (TwitterException e) {            
