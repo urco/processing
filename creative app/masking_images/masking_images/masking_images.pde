@@ -14,7 +14,7 @@ void setup()
 {
   size(800, 500);
   PImage smallImage = loadImage("montaos.jpg");
-  font = loadFont("testtipo.vlw");
+  //font = loadFont("testtipo.vlw");
   smooth();
   mask = createGraphics(width, height, JAVA2D);
 
@@ -61,7 +61,7 @@ void drawTextured(int drawing)
   mask.background(0);
   mask.fill(255);
   mask.noStroke();
-  mask.ellipse(width/2,height/2,100,100);
+  mask.ellipse(width/2,height/2,60,60);
   
   mask.endDraw();
 
