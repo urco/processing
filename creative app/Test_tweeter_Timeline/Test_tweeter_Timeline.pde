@@ -4,7 +4,7 @@ import twitter4j.auth.*;
 import twitter4j.api.*;
 import java.util.*;
 
-
+circleMask pic;
 List<Status>statuses = null;
 List<User> usuario=null;
 String imgTemp = null;
@@ -15,13 +15,13 @@ PImage img;
 void setup() {     
   size(800, 600);    
   background(0); 
-  
-  connectTwitter(); 
+  connectTwitter();
   
 }  
 
 void draw() {     
-  background(0);
+  smooth();
+  background(230);
   getSearchTweets(); 
   //getTimeline();
   delay(50);  
@@ -61,18 +61,23 @@ void getTimeline() {
 // Search for tweets and user profile Image
 
 void getSearchTweets() {           
+  //float x=random(width);
+  //float y=random(height);
   try {        
-    Query query = new Query("lomce");            
+    Query query = new Query("love");            
     QueryResult result = twitter.search(query);
    
        
     for (Status status : result.getTweets()) {              
       //println("@" + status.getUser().getScreenName() + ":" + status.getText());
-      text("@" + status.getUser().getScreenName() + ":" + status.getText(),random(width), random(height), 300, 200);
+      //text("@" + status.getUser().getScreenName() + ":" + status.getText(),random(width), random(height), 300, 200);
       imgTemp=status.getUser().getBiggerProfileImageURL();
       img = loadImage(imgTemp, "png"); 
+      circleMask pic=new circleMask(60,img,random(width),random(height));
+      pic.display();
       //img.resize(600,0);
-      image(img,random(width), random(height));   
+      //image(img,random(width), random(height));
+         
    }
   }   
   catch (TwitterException e) {            
