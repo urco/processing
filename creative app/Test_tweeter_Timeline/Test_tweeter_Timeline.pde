@@ -24,7 +24,7 @@ void draw() {
   background(0);
   getSearchTweets(); 
   //getTimeline();
-  delay(250);  
+  delay(50);  
   
 }  
 
@@ -77,5 +77,20 @@ void getSearchTweets() {
   }   
   catch (TwitterException e) {            
     println("Search tweets: " + e);
-  }
+  } 
+  
+}
+
+
+void tweetear()
+{
+    try 
+    {
+        Status status = twitter.updateStatus("Isto vai indo!");
+        System.out.println("Status updated to [" + status.getText() + "].");
+    }
+    catch (TwitterException te)
+    {
+        System.out.println("Error: "+ te.getMessage()); 
+    }
 }

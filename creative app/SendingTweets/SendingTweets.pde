@@ -13,8 +13,8 @@ void setup()
    ConfigurationBuilder cb = new ConfigurationBuilder();
   cb.setOAuthConsumerKey("uMjvPLmvcs7j4flrgqsSw");
   cb.setOAuthConsumerSecret("MhRJLl1I1gJeftRDEHS5ZvDtrRF1VYVpJNjE7SYDdj4");
-  cb.setOAuthAccessToken("2151648294-hTY97KFpT98zjdIPhMIE25bXfi6nmGzVj0zOPUB");
-  cb.setOAuthAccessTokenSecret("jAbqWj0tRC5RJUguhj5EZK72xciwAKjcng8Jh93Fa4KY2");
+  cb.setOAuthAccessToken("2151648294-wftVMnuuBp1cKMINr9VCxCchtHb3zGMx37nGZLV");
+  cb.setOAuthAccessTokenSecret("OHI4xguKlyTKoemMMQsycLWUcmxhZYtxLl751biXJtu6K");
 
     TwitterFactory tf = new TwitterFactory(cb.build());
 
@@ -30,7 +30,7 @@ void tweet()
 {
     try 
     {
-        Status status = twitter.updateStatus("This is a tweet sent from Processing!");
+        Status status = twitter.updateStatus("hoxe e venres!");
         System.out.println("Status updated to [" + status.getText() + "].");
     }
     catch (TwitterException te)
