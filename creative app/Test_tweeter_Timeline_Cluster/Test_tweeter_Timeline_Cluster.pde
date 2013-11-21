@@ -1,3 +1,5 @@
+//Javier Rey Varela
+
 import twitter4j.conf.*;
 import twitter4j.*;
 import twitter4j.auth.*;
@@ -6,6 +8,9 @@ import java.util.*;
 import toxi.geom.*;
 import toxi.physics2d.*;
 
+VerletPhysics2D physics;
+nodeUsers nodes;
+clusterUsers cluster;
 circleMask pic;
 List<Status>statuses = null;
 List<User> usuario=null;
@@ -13,27 +18,49 @@ String imgTemp = null;
 TwitterFactory twitterFactory;
 Twitter twitter;
 PImage img; 
-VerletPhysics2D physics;
+
+// Boolean that indicates whether we draw connections or not
+boolean showPhysics = true;
+boolean showParticles = true;
+
+
 //Cluster clusterUsers;
 
 
-void setup() {     
-  size(800, 600);    
+void setup() { 
+  
+  smooth();
+  size(1024, 800);    
   //background(0); 
   connectTwitter();
+  nodes=new nodeUsers(Vec2D.randomVector());
+  physics=new VerletPhysics2D();
+  physics.setWorldBounds(new Rect(10, 10, width-20, height-20));
+
+  // Spawn a new random graph
+  cluster = new clusterUsers(8, 600, new Vec2D(width/2, height/2));
   
 }  
 
 void draw() {     
+  physics.update();
   smooth();
   background(230);
-  getSearchTweets(); 
+  nodes.getSearchTweets();
+   // Display all points
+  if (showParticles) {
+    cluster.display();
+  }
+
+  // If we want to see the physics
+  if (showPhysics) {
+    cluster.showConnections();
+  }
+  //getSearchTweets(); 
   //getTimeline();
-  delay(50);  
+  delay(10);  
   
 }  
-
-
 
 // Initial connection
 void connectTwitter() {  
@@ -50,6 +77,7 @@ void connectTwitter() {
   println("connected");
 } 
 
+
 // Get your tweets
 void getTimeline() {     
   try {        
@@ -65,7 +93,7 @@ void getTimeline() {
 }  
 // Search for tweets and user profile Image
 
-void getSearchTweets() {           
+/*void getSearchTweets() {           
   //float x=random(width);
   //float y=random(height);
   try {        
@@ -89,7 +117,7 @@ void getSearchTweets() {
     println("Search tweets: " + e);
   } 
   
-}
+}*/
 
 
 void tweetear()
@@ -104,3 +132,19 @@ void tweetear()
         System.out.println("Error: "+ te.getMessage()); 
     }
 }
+
+void keyPressed() {
+  if (key == 'c') {
+    showPhysics = !showPhysics;
+    if (!showPhysics) showParticles = true;
+  } 
+  else if (key == 'p') {
+    showParticles = !showParticles;
+    if (!showParticles) showPhysics = true;
+  } 
+  else if (key == 'n') {
+    physics.clear();
+    cluster = new clusterUsers(int(random(2, 20)), random(10, width/2), new Vec2D(width/2, height/2));
+  }
+}
+
